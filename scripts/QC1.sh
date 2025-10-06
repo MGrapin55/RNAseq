@@ -4,6 +4,7 @@
 #SBATCH --error=./std.err/%x.%J.err
 #SBATCH --output=./std.out/%x.%J.out
 #SBATCH --nodes=1
+#SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1gb
 #SBATCH --partition=batch
