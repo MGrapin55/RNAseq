@@ -5,7 +5,7 @@
 #SBATCH --output=./std.out/%x.%J.out
 #SBATCH --nodes=1
 #SBATCH --ntasks=1              
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
 #SBATCH --partition=batch
 set -eou pipefail
@@ -28,6 +28,8 @@ conda activate "$NRDSTOR/biostar"
 # Path to BAM files
 ALIGN=""
 
+# Number of parallel commands 
+N=$SLURM_NTASKS
 #############################################################
 ##					      Commands              		   ##
 #############################################################
