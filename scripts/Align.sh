@@ -29,7 +29,7 @@ conda activate "$NRDSTOR/biostar"
 ##											Parameters and Setup												  ##
 ####################################################################################################################
 # Fill out required fields and then submit via slurm 
-# Usage sbatch AlignReads.sh 
+# Usage sbatch Align.sh 
 
 # Path to where you want to output the Hisat2 run (Change if you don't want it in the same directory that you submit the script)
 OUTDIR= 
@@ -77,7 +77,7 @@ find "$TRIM" -name "*_R1*.fastq.gz" | sort | while read R1_FILE; do
 
     # Add the command to a list for GNU Parallel to execute.
     # The command pipes the output of hisat2 directly to samtools sort.
-    echo "hisat2 -p $THREADS -x \"$IDX\" -1 \"$R1_FILE\" -2 \"$R2_FILE\" 2> ${SAMPLE_NAME}.hisat2.log | samtools sort -@ 4 -o \"$OUTPUT_BAM\"" 
+    echo hisat2 -p "$THREADS" -x "$IDX" -1 "$R1_FILE" -2 "$R2_FILE" 2">" "${SAMPLE_NAME}.hisat2.log" "|" samtools sort -@ 4 -o "$OUTPUT_BAM"
 
 done | parallel -j $N
 
